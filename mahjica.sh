@@ -32,7 +32,7 @@ do
                 printf $login, >> results/q$p_num.csv
 
                 #call ghci on the file and pattern then capture regex group
-                result=$(echo "$pattern_content" | ghci $login-q$p_num.hs 2>&1 | grep -oE "(\*[a-zA-Z0-9]*>|<interactive>:[0-9]*:[0-9]*:) (True|False|error)")
+                result=$(echo "$pattern_content" | ghci codes/$login-q$p_num.hs 2>&1 | grep -oE "(\*[a-zA-Z0-9]*>|<interactive>:[0-9]*:[0-9]*:) (True|False|error)")
 
                 #split result into words. Discard odd entries. Save to scsv
                 let i=1
