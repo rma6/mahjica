@@ -3,8 +3,8 @@
 rm -r results
 mkdir -p results
 
-patterns="pattern-q*.txt" #get list of pattern files
-p_regex="pattern-q([0-9]*).txt" #pattern files regex for group capture the pattern number
+patterns="patterns/pattern-q*.txt" #get list of pattern files
+p_regex="patterns/pattern-q([0-9]*).txt" #pattern files regex for group capture the pattern number
 
 for pattern in $patterns
 do
@@ -14,8 +14,7 @@ do
         pattern_content=$(cat $pattern) #open pattern and get its content
         test_cases_num=$(echo "$pattern_content" | wc -l) #get number of test cases in pattern file
 
-        #build csv header
-        
+        #build csv header        
         printf "login\weigths" >> results/q$p_num.csv
         for i in $(seq $test_cases_num)
         do
@@ -23,8 +22,8 @@ do
         done
         printf ",\n" >> results/q$p_num.csv #print final ,\n
 
-        files="*-q$p_num.hs" #get list of code files reggarding pattern p_num
-        f_regex="([a-zA-Z0-9]*)-q$p_num.hs" #files regex for group capture the login
+        files="codes/*-q$p_num.hs" #get list of code files reggarding pattern p_num
+        f_regex="codes/([a-zA-Z0-9]*)-q$p_num.hs" #files regex for group capture the login
         for file in $files
         do
             if [[ $file =~ $f_regex ]] #check if file  matches f_regex (and captures group)
